@@ -26,6 +26,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ie.quirke.martin.sunshine.app.MainActivity" />
         </activity>
+        <activity
+            android:name="ie.quirke.martin.sunshine.app.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="ie.quirke.martin.sunshine.app.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="Main_Activity" />
+        </activity>
     </application>
 
 </manifest>
