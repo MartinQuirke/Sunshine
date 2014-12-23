@@ -117,6 +117,7 @@ public class ForecastFragment extends Fragment {
         String pCode = settings.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
         weatherTask.execute(pCode);
     }
+
     @Override
     public void onStart(){
         super.onStart();
@@ -249,6 +250,14 @@ public class ForecastFragment extends Fragment {
          * Prepare the weather high/lows for presentation.
          */
         private String formatHighLows(double high, double low) {
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String unit = settings.getString(getString(R.string.pref_unit_key), getString(R.string.pref_unit_default));
+            if(unit.equals(getString(R.string.pref_unit_imperial))){
+                high = high*1.8+32;
+                low = low*1.8+32;
+            }else if(!unit.equals(getString(R.string.pref_unit_metric))){
+                Log.d(LOG_TAG, "Unit Not Found: " + unit);
+            }
             // For presentation, assume the user doesn't care about tenths of a degree.
             long roundedHigh = Math.round(high);
             long roundedLow = Math.round(low);
@@ -304,6 +313,7 @@ public class ForecastFragment extends Fragment {
                 JSONObject temperatureObject = dayForecast.getJSONObject(OWM_TEMPERATURE);
                 double high = temperatureObject.getDouble(OWM_MAX);
                 double low = temperatureObject.getDouble(OWM_MIN);
+
 
                 highAndLow = formatHighLows(high, low);
                 resultStrs[i] = day + " - " + description + " - " + highAndLow;
