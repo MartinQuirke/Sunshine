@@ -11,5 +11,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="pref_location_key">location</string>
+    <string name="pref_location_default">94043</string>
+    <string name="pref_location_label">Location</string>
 
 </resources>
